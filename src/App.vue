@@ -1,30 +1,32 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
+  <h1>Also just a test.</h1>
   <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+    <Carousel :value="products" :numVisible="3" :numScroll="1" :responsiveOptions="responsiveOptions">
+    <template #item="slotProps">
+        <div class="border border-surface-200 dark:border-surface-700 rounded m-2  p-4">
+            <div class="mb-4">
+                <div class="relative mx-auto">
+                    <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image" :alt="slotProps.data.name" class="w-full rounded" />
+                    <Tag :value="slotProps.data.inventoryStatus" :severity="getSeverity(slotProps.data.inventoryStatus)" class="absolute" style="left:5px; top: 5px"/>
+                </div>
+            </div>
+            <div class="mb-4 font-medium">{{ slotProps.data.name }}</div>
+            <div class="flex justify-between items-center">
+                <div class="mt-0 font-semibold text-xl">${{ slotProps.data.price }}</div>
+                <span>
+                    <Button icon="pi pi-heart" severity="secondary" outlined />
+                    <Button icon="pi pi-shopping-cart" class="ml-2"/>
+                </span>
+            </div>
+        </div>
+      </template>
+    </Carousel>
   </div>
-  <HelloWorld msg="Vite + Vue" />
+  <Button id='testButton' label="Submit" />
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
 </style>
