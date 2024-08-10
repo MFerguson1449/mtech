@@ -1,11 +1,11 @@
 import { createApp } from 'vue'
-import './style.css'
+import './output.css'
 import App from './App.vue'
 import PrimeVue from "primevue/config";
 import Carousel from 'primevue/carousel';
 import Button from "primevue/button"
-const app = createApp(App);
 
+const app = createApp(App);
 app.use(PrimeVue, {
     unstyled: true
 });
